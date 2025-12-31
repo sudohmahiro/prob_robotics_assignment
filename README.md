@@ -1,1 +1,3 @@
-# sudohmahiro-prob_robotics_assignment
+prob_robotics_assignment
+
+確率ロボティクスの課題レポジトリ
