@@ -71,9 +71,11 @@ $$
 P_t = (1 - K_t)P_{t|t-1}
 $$
 
-### 真値・観測値・カルマンフィルタ推定値の比較
+---
 
-![Kalman estimate vs true and measurement](./kalman_plot.png)
+## 真値・観測値・カルマンフィルタ推定値の比較
+
+![Kalman estimate vs true and measurement](./output/kalman_plot.png)
 
 上図は、以下の 3 つの値を時間ステップごとに比較したものである。
 
@@ -89,16 +91,17 @@ $$
 **ノイズを含む観測から真の状態を推定するのに有効である**
 ことが確認できる。
 
-![Kalman gain and estimate uncertainty](./kalman_gain_variance.png)
+## カルマンゲインと推定分散の推移
 
-上図は、時間ステップに対する **カルマンゲイン $K_t$** と  
-**推定誤差分散 $P_t$** の推移を示している。
+![Kalman gain and estimate uncertainty](./output/kalman_gain_variance.png)
+
+上図は、時間ステップに対する **カルマンゲイン $K_t$** と  **推定誤差分散 $P_t$** の推移を示している。
 
 - 青線：カルマンゲイン $K_t$
 - オレンジ線：推定誤差分散 $P_t$
 
 初期段階では推定誤差が大きいため、観測をどの程度信頼するかを表すカルマンゲインは急激に変化する。
-時間が進むにつれて、推定が安定し、$K_t$ および $P_t$ は一定値に収束している。
+時間が進むにつれて、推定が安定し、 $K_t$ および $P_t$ は一定値に収束している。
 
 ### 参考資料
 - https://ushitora.net/archives/3274
