@@ -72,6 +72,26 @@ def plot(t, x_true, z_meas, x_est, out_dir="output", filename="kalman_plot.png")
 
     plt.show()
 
+def plot_gain_and_variance(
+    t, k_hist, p_est,
+    out_dir="output",
+    filename="kalman_gain_variance.png"):
+    plt.figure()
+    plt.plot(t, k_hist, label="Kalman gain K")
+    plt.plot(t, p_est, label="Estimate variance P")
+    plt.xlabel("time step")
+    plt.title("Kalman gain and estimate uncertainty")
+    plt.legend()
+    plt.tight_layout()
+
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, filename)
+    plt.savefig(out_path, dpi=200, bbox_inches="tight")
+    print(f"Saved figure to: {out_path}")
+
+    plt.show()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--steps", type=int, default=60)
@@ -83,10 +103,10 @@ def main():
     args = parser.parse_args()
 
     u, x_true, z_meas = simulate_1d_robot(args.steps, args.seed, args.q, args.r)
-    x_est, _, _ = kalman_filter(u, z_meas, x0=args.x0, p0=args.p0, q=args.q, r=args.r)
+    x_est, p_est, k_hist = kalman_filter(u, z_meas, x0=args.x0, p0=args.p0, q=args.q, r=args.r)
     t = np.arange(args.steps)
     plot(t, x_true, z_meas, x_est)
+    plot_gain_and_variance(t, k_hist, p_est)
 
 if __name__ == "__main__":
     main()
-
