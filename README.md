@@ -5,10 +5,19 @@
 ## 概要
 1次元ロボットが「右に1m or 左に1m」に移動する状況をシミュレーションをしノイズを含む観測値からカルマンフィルタで位置推定を行う。
 
+
+$$
+x_t = x_{t-1} + u_t + w_t,
+\quad
+w_t \sim \mathcal{N}(0, Q)
+$$
+
+
+
 ## 問題設定
-- 空間：1次元
-- 状態：位置 $\(x\)$
-- 初期位置：$\(x_0 = 0\)$
+- 空間： 1次元
+- 状態： $x$
+- 初期位置： $x_0$
 ### ロボット
 
 ### 行動モデル
@@ -23,6 +32,7 @@
 
 ## 実行方法
 
-### 参考文献
-https://ushitora.net/archives/3274
-https://qiita.com/arutan_dev/items/091138f2d80e79a5c703
+### 参考資料
+- https://ushitora.net/archives/3274
+- https://qiita.com/arutan_dev/items/091138f2d80e79a5c703
+

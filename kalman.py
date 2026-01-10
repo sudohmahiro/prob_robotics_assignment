@@ -1,3 +1,4 @@
+import os
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -53,7 +54,7 @@ def kalman_filter(u, z, x0=0.0, p0=0.0, q=0.2, r=2.0):
 #        x_pred[t]=x
 #    return x_pred
 
-def plot(t, x_true, z_meas, x_est):
+def plot(t, x_true, z_meas, x_est, out_dir="output", filename="kalman_plot.png"):
     plt.figure()
     plt.plot(t, x_true, label="True position")
     plt.plot(t, z_meas, label="Measurement", linestyle="None", marker="o", markersize=3)
@@ -63,6 +64,12 @@ def plot(t, x_true, z_meas, x_est):
     plt.title("kalman estimate-True/Measurement")
     plt.legend()
     plt.tight_layout()
+
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, filename)
+    plt.savefig(out_path, dpi=200, bbox_inches="tight")
+    print(f"Saved figure to: {out_path}")    
+
     plt.show()
 
 def main():
